@@ -30,21 +30,13 @@ end
 if File.exist?("4.input")
     File.open("4.input") do |file|
         
-        # Part 1
-        count = file.each_line.inject(0) do |mem, line|
-            mem += 1 if valid_passphrase?(line)
-            mem
+        part1 = 0
+        part2 = 0
+        file.each_line do |passphrase|
+            part1 += 1 if valid_passphrase?(passphrase)
+            part2 += 1 if valid_passphrase2?(passphrase)
         end
-        puts "#{count} valid passphrases"
-        
-        file.rewind
-        
-        # Part 2
-        count = file.each_line.inject(0) do |mem, line|
-            mem += 1 if valid_passphrase2?(line)
-            mem
-        end
-        puts "#{count} valid stronger passphrases"
-        
+        puts "#{part1} valid passphrases"
+        puts "#{part2} valid stronger passphrases"
     end
 end
