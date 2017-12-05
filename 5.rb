@@ -1,6 +1,7 @@
 # https://adventofcode.com/2017/day/5
 
 require "minitest/autorun"
+require "benchmark"
 
 def step(jumplist)
     list = jumplist.split.map(&:to_i)
@@ -44,5 +45,14 @@ eos
     end
 end
 
-puts "Part one completed in #{step(File.read('5.input'))} steps"
-puts "Part two completed in #{step2(File.read('5.input'))} steps"
+Benchmark.bm do |x|
+    x.report do
+        steps = step(File.read('5.input'))
+        puts "Part one completed in #{steps} steps"
+    end
+    x.report do
+        steps = step2(File.read('5.input'))
+        puts "Part two completed in #{steps} steps"
+    end
+end
+
