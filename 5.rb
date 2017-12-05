@@ -4,10 +4,8 @@ require "minitest/autorun"
 
 def step(jumplist)
     list = jumplist.split.map(&:to_i)
-    head = 0
-    step = 0
-    while head < list.count
-        instruction = list[head]
+    head, step = 0, 0
+    while instruction = list[head]
         list[head] += 1
         head += instruction
         step += 1
@@ -17,10 +15,8 @@ end
 
 def step2(jumplist)
     list = jumplist.split.map(&:to_i)
-    head = 0
-    step = 0
-    while head < list.count
-        instruction = list[head]
+    head, step = 0, 0
+    while instruction = list[head]
         list[head] += instruction >= 3 ? -1 : 1
         head += instruction
         step += 1
